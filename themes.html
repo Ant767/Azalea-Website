@@ -89,6 +89,9 @@
         font-family: "Mojang";
         font-size: 16px;
     }
+    .theme-options > div > span {
+        min-width: 219.5px;
+    }
     .theme-options > div * {
         font-family: 'Mojang';
         font-size: 16px;
@@ -216,11 +219,12 @@
                 let btn = document.createElement('button');
                 btn.style.backgroundColor = `var(--c${code.substring(1)})`;
                 if(theme[key] == code) btn.style.border = "5px solid green";
+                else btn.style.border = "5px solid black";
                 btn.onclick = function() {
                     theme[key] = code;
                     let btns = themeOptionRow.querySelectorAll('button');
                     for(const btn2 of btns) {
-                        btn2.style.border = "none";
+                        btn2.style.border = "5px solid black";
                     }
                     btn.style.border = "5px solid green";
                 }
