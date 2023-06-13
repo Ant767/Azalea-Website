@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Azalea theme maker</h1>
+    <pre class="theme-container">
+        <span class="a"></span>
+    </pre>
+    <div class="theme-options">
+        <!--
+                successColor: "§a",
+    errorColor: "§c",
+    infoColor: "§s",
+    defaultBracketColor: "§8",
+    defaultRankColor: "§7",
+    defaultNameColor: "§a",
+    defaultMessageColor: "§f",
+    barFull: "§q",
+    barEmpty: "§n",
+    barBracket: "§a",
+    category: "§8",
+    command: "§a",
+    description: "§7",
+    alias: "§h",
+    warningColor: "§e"
+        -->
+    </div>
+    <button class="export" onclick="exportTheme(theme)">Export</button>
+    <pre class="code"></pre>
+</body>
+<style>
+    @font-face {
+        font-family: 'Mojang';
+        src: url(./Mojang-Regular.ttf);
+    }
+    pre.code {
+        color: white;
+    }
+    .export {
+        background: #fff;
+        padding: 10px;
+        border: 0;
+        font-family: 'Mojang';
+        color: black;
+    }
+    :root {
+        --c1: #0000aa;
+        --c2: #00aa00;
+        --c3: #00aaaa;
+        --c4: #aa0000;
+        --c5: #aa00aa;
+        --c6: #ffaa00;
+        --c7: #aaaaaa;
+        --c8: #555555;
+        --c9: #5454ff;
+        --ca: #55ff55;
+        --cb: #54ffff;
+        --cc: #ff5454;
+        --cd: #ff54ff;
+        --ce: #ffff54;
+        --cf: #ffffff;
+        --cg: #efce16;
+        --ch: #cec9c9;
+        --cj: #44393a;
+        --cm: #961506;
+        --cn: #b4684d;
+        --cp: #deb02c;
+        --cq: #119f36;
+        --cs: #2cb9a8;
+        --ct: #20487a;
+        --cu: #9a5cc5;
+    }
+    body {
+        background: black;
+    }
+    h1 {
+        color: white;
+        font-family: 'Mojang';
+    }
+    pre {
+        padding: 20px;
+        background: black;
+        border: 5px solid #555;
+        font-family: "Mojang";
+        font-size: 16px;
+    }
+    .theme-options > div * {
+        font-family: 'Mojang';
+        font-size: 16px;
+        color: white;
+    }
+    .theme-options > div {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        height: fit-content;
+    }
+    .theme-options > div button {
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+        padding: 8px;
+        border: 0;
+        border-radius: 4px;
+    }
+</style>
+<script>
+    function exportTheme(themeData) {
+        document.querySelector('.code').innerText = JSON.stringify(themeData, null, 2);
+    }
+    function preview(themeData) {
+        // let text = [];
+        // text.push(`${themeData.category}<-=- ${themeData.command}Theme Applied! ${themeData.category}-=->`);
+        // text.push(`${themeData.command}Progress bar: ${themeData.barBracket}[${themeData.barFull}###${themeData.barEmpty}---${themeData.barBracket}]`);
+        // text.push(``)
+        // text.push(`${themeData.warningColor}[ WARNING ]`)
+        // text.push(`${themeData.errorColor}[ ERROR ]`)
+        // text.push(`${themeData.successColor}[ SUCCESS ]`)
+        // text.push(`${themeData.infoColor}[ INFO ]`)
+        // text.push(``)
+        // text.push(`${themeData.command}!command ${themeData.description}Description ${themeData.alias}Alias`);
+        let text = [];
+        text.push(`<span style="color: var(--c${themeData.category.substring(1)})"><-=-</span> <span style="color: var(--c${themeData.command.substring(1)})">Theme Applied!</span> <span style="color: var(--c${themeData.category.substring(1)})">-=-></span>`);
+        text.push(`<span style="color: var(--c${themeData.command.substring(1)})">Progress bar:</span> <span style="color: var(--c${themeData.barBracket.substring(1)})">[</span><span style="color: var(--c${themeData.barFull.substring(1)})">###</span><span style="color: var(--c${themeData.barEmpty.substring(1)})">---</span><span style="color: var(--c${themeData.barBracket.substring(1)})">]`)
+        text.push(``);
+        text.push(`<span style="color: var(--c${themeData.warningColor.substring(1)})">[ WARNING ]</span>`)
+        text.push(`<span style="color: var(--c${themeData.errorColor.substring(1)})">[ ERROR ]</span>`)
+        text.push(`<span style="color: var(--c${themeData.successColor.substring(1)})">[ SUCCESS ]</span>`)
+        text.push(`<span style="color: var(--c${themeData.infoColor.substring(1)})">[ INFO ]</span>`)
+        text.push(``);
+        text.push(`<span style="color: var(--c${themeData.command.substring(1)})">!command</span> <span style="color: var(--c${themeData.description.substring(1)})">Description</span> <span style="color: var(--c${themeData.alias.substring(1)})">Alias</span>`)
+        document.querySelector('pre').innerHTML = `${text.join('\n')}`;
+    }
+    let theme = {
+    name: "Default Azalea",
+    descriptionText: "Default.",
+    successColor: "§a",
+    errorColor: "§c",
+    infoColor: "§s",
+    defaultBracketColor: "§8",
+    defaultRankColor: "§7",
+    defaultNameColor: "§a",
+    defaultMessageColor: "§f",
+    barFull: "§q",
+    barEmpty: "§n",
+    barBracket: "§a",
+    category: "§8",
+    command: "§a",
+    description: "§7",
+    alias: "§h",
+    warningColor: "§e"
+}
+
+    preview(theme);
+    function parseTheme({
+        successColor,
+        errorColor,
+        infoColor,
+        defaultBracketColor,
+        defaultRankColor,
+        defaultNameColor,
+        defaultMessageColor,
+        barFull,
+        barEmpty,
+        barBracket,
+        category,
+        command,
+        description,
+        alias,
+        warningColor
+    }) {
+    }
+    let themeOptions = document.querySelector('.theme-options')
+    /*
+        --1: #0000aa;
+        --2: #00aa00;
+        --3: #00aaaa;
+        --4: #aa0000;
+        --5: #aa00aa;
+        --6: #ffaa00;
+        --7: #aaaaaa;
+        --8: #555555;
+        --9: #5454ff;
+        --a: #55ff55;
+        --b: #54ffff;
+        --c: #ff5454;
+        --d: #ff54ff;
+        --e: #ffff54;
+        --f: #ffffff;
+        --g: #efce16;
+        --h: #cec9c9;
+        --j: #44393a;
+        --m: #961506;
+        --n: #b4684d;
+        --p: #deb02c;
+        --q: #119f36;
+        --s: #2cb9a8;
+        --t: #20487a;
+        --u: #20487a;
+    */
+    let codes1 = '123456789abcdefghjmnpqstu'.split('');
+    let codes = codes1.map(_=>`§${_}`);
+    let keys = Object.keys(theme);
+    for(const key of keys) {
+        if(key != "name" && key != "descriptionText") {
+            let themeOptionRow = document.createElement('div');
+            let span = document.createElement('span');
+            span.innerText = key;
+            themeOptionRow.appendChild(span);
+            for(const code of codes) {
+                let btn = document.createElement('button');
+                btn.style.backgroundColor = `var(--c${code.substring(1)})`;
+                if(theme[key] == code) btn.style.border = "5px solid green";
+                btn.onclick = function() {
+                    theme[key] = code;
+                    let btns = themeOptionRow.querySelectorAll('button');
+                    for(const btn2 of btns) {
+                        btn2.style.border = "none";
+                    }
+                    btn.style.border = "5px solid green";
+                }
+                themeOptionRow.appendChild(btn);
+            }
+            document.querySelector('.theme-options').appendChild(themeOptionRow);
+        }
+    }
+    setInterval(()=>{
+        preview(theme);
+    },1000);
+</script>
+</html>
